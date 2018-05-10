@@ -1,7 +1,5 @@
 # kixi.paloma
 
-![Paloma](https://frostsnow.com/uploads/biography/2015/10/05/paloma-faith.jpg)
-
 An API Server based on Compojure-API to deliver a REST service for UPRN's.
 
 ## Usage
