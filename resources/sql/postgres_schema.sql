@@ -15,7 +15,7 @@ CREATE TABLE business_name (
        uprn varchar(40) NOT NULL,
        data_source varchar(100) NOT NULL,
        premises_ref varchar(40),
-       civica_preferred_name varchar(255),
+       civica_preferred_name boolean,
        business_name varchar(255),
        update_date date,
        start_data date,
