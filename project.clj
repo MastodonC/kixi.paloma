@@ -1,11 +1,13 @@
 (defproject kixi.paloma "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :dependencies [[org.clojure/clojure "1.9.0"]
+                 [org.clojure/tools.logging "0.4.1"]
                  [metosin/compojure-api "1.1.11"]
                  [org.clojure/data.csv "0.1.4"]
                  [com.layerware/hugsql "0.4.8"]
                  [org.postgresql/postgresql "42.1.4"]
                  [clj-time "0.14.3"] ;; Used for JDBC timestamps (if requried)
+                 [org.clojure/data.json "0.2.6"]
                  [environ "1.1.0"]
                  [mount "0.1.12"]
                  [conman "0.7.8"]]

@@ -1,4 +1,4 @@
--- :name get-business-by-uprn :? :*
+-- :name get-business-by-uprn :? :1
 -- :doc
 SELECT uprn, nndr_prop_ref, start_date, end_date
 FROM business
