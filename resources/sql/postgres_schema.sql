@@ -18,5 +18,5 @@ CREATE TABLE business_name (
        civica_preferred_name boolean,
        business_name varchar(255),
        update_date date,
-       start_data date,
+       start_date date,
        end_date date);
