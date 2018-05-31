@@ -11,11 +11,12 @@
             PreparedStatement]))
 
 (defstate ^:dynamic *db*
-  :start (if-let [jdbc-url (env :paloma-database-url)]
+  :start (if-let [jdbc-url (env :bx-database-url)]
            (conman/connect! {:jdbc-url jdbc-url})
            (do
-             (log/warn "database connection URL was not found, please set :paloma-database-url in your config.")
+             (log/warn "database connection URL was not found, please set :bx-database-url in your config.")
              *db*))
   :stop (conman/disconnect! *db*))
 
 (conman/bind-connection *db* "sql/queries.sql")
+(mount.core/start #'*db*)

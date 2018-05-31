@@ -2,7 +2,25 @@
   (:require [compojure.api.sweet :refer :all]
             [ring.util.http-response :refer :all]
             [kixi.paloma.db :as db]
+            [kixi.paloma.schema :as kps]
+            [clojure.data.json :as json]
+            [ring.swagger.schema :refer [coerce!]]
             [schema.core :as s]))
+
+(defn get-business-record [uprn]
+  (db/get-business-by-uprn {:uprn uprn}))
+
+(defn get-business-names [uprn]
+  (db/get-business-names {:uprn uprn}))
+
+(defn get-addresses [uprn]
+  (db/get-addresses {:uprn uprn}))
+
+(defn generate-response [uprn]
+  (let [business-record (get-business-record uprn)
+        names (get-business-names uprn)
+        addresses (get-addresses uprn)]
+    (assoc business-record :addresses addresses :names names)))
 
 (def app
   (api
@@ -16,8 +34,12 @@
    (context "/api" []
             :tags ["api"]
 
+            (GET "/business" []
+                 :summary "Constructs a business record response."
+                 :query-params [uprn :- String]
+                 (ok (generate-response uprn)))
+
             (GET "/heartbeat" []
                  :return {:result String}
                  :summary "Checks server is alive and responding."
-                 (ok {:result "heartbeat:alive"}))
-            )))
+                 (ok {:result "heartbeat:alive"})))))
