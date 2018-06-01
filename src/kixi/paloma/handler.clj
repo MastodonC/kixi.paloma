@@ -7,6 +7,13 @@
             [ring.swagger.schema :refer [coerce!]]
             [schema.core :as s]))
 
+(defn generate-sfl-response [uprn]
+  (if-let [llpg-name (db/get-llpg-business-name {:uprn uprn})]
+    llpg-name
+    (if-let [civica-name (db/get-civica-business-name {:uprn uprn})]
+      civica-name
+      {})))
+
 (defn get-business-record [uprn]
   (db/get-business-by-uprn {:uprn uprn}))
 
@@ -29,7 +36,7 @@
      :spec "/swagger.json"
      :data {:info {:title "Kixi.paloma"
                    :description "A REST API for UPRNs"}
-            :tags [{:name "api", :description "some apis"}]}}}
+            :tags [{:name "api", :description "API for business name searches by UPRN"}]}}}
 
    (context "/api" []
             :tags ["api"]
@@ -38,6 +45,11 @@
                  :summary "Constructs a business record response."
                  :query-params [uprn :- String]
                  (ok (generate-response uprn)))
+
+            (GET "/sfl" []
+                 :summary "Returns a business name from LLPG or Civica, empty if not found."
+                 :query-params [uprn :- String]
+                 (ok (generate-sfl-response uprn)))
 
             (GET "/heartbeat" []
                  :return {:result String}
