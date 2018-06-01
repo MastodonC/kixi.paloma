@@ -12,4 +12,6 @@ ENV CONFIG_PROFILE=${environment}
 ADD target/server.jar /srv/server.jar
 ADD scripts/run.sh /srv/run
 
+EXPOSE 3000/tcp
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
