@@ -17,7 +17,7 @@ FROM business_name
 WHERE uprn=:uprn;
 
 -- :name get-civica-business-name :? :1
-SELECT business_name FROM business_name WHERE uprn=:uprn AND data_source='civica' AND civica_preferred_name=True;
+SELECT business_name, data_source FROM business_name WHERE uprn=:uprn AND data_source='civica' AND civica_preferred_name=True;
 
 -- :name get-llpg-business-name :? :1
-SELECT business_name FROM business_name WHERE uprn=:uprn AND data_source='llpg';
+SELECT business_name, data_source FROM business_name WHERE uprn=:uprn AND data_source='llpg';

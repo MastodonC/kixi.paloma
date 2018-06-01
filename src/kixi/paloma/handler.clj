@@ -10,7 +10,9 @@
 (defn generate-sfl-response [uprn]
   (if-let [llpg-name (db/get-llpg-business-name {:uprn uprn})]
     llpg-name
-    (db/get-civica-business-name {:uprn uprn})))
+    (if-let [civica-name (db/get-civica-business-name {:uprn uprn})]
+      civica-name
+      {})))
 
 (defn get-business-record [uprn]
   (db/get-business-by-uprn {:uprn uprn}))
