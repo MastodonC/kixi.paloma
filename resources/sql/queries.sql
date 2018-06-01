@@ -15,3 +15,9 @@ WHERE uprn=:uprn;
 SELECT uprn, data_source, premises_ref, civica_preferred_name, business_name, update_date, start_date, end_date
 FROM business_name
 WHERE uprn=:uprn;
+
+-- :name get-civica-business-name :? :1
+SELECT business_name FROM business_name WHERE uprn=:uprn AND data_source='civica' AND civica_preferred_name=True;
+
+-- :name get-llpg-business-name :? :1
+SELECT business_name FROM business_name WHERE uprn=:uprn AND data_source='llpg';
