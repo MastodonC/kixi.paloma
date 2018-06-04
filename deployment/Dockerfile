@@ -6,8 +6,7 @@ CMD ["/sbin/my_init"]
 RUN apt-get update \
 &&  apt-get -y install software-properties-common
 
-ENV JAR_LOCATION=/srv/server.jar
-ENV CONFIG_PROFILE=${environment}
+ENV JAR_LOCATION=/srv
 
 ADD target/server.jar /srv/server.jar
 ADD scripts/run.sh /srv/run
