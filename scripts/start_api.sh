@@ -1,4 +1,7 @@
 #!/bin/bash
+# Usage: ./start_api.sh [dockerhub tag] [port]
 
-TAG=latest
-sudo docker run --name kixi.paloma -p 80:3000/tcp mastodonc/kixi.paloma:${TAG} /srv/run
+TAG=$1
+PORT=$2
+
+sudo docker run --name kixi.paloma -p ${PORT}:3000/tcp mastodonc/kixi.paloma:${TAG} /srv/run
