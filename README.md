@@ -9,23 +9,28 @@ An API Server based on Compojure-API to deliver a REST service for UPRN's.
 The database connection url string is stored an an environment variable.
 
 ```
-export PALOMA_DATABASE_URL=jdbc.postgresql://localhost/palomaapidb
+$ export BX_DATABASE_URL=jdbc.postgresql://hostname:port/databasename?user=dbusername&password=dbpassword
+```
+
+### Building the Docker Container
+
+From the project home directory run the following commands:
+
+```
+$ lein do clean, ring uberjar
+$ docker build -f deployment/Dockerfile .
 ```
 
 ### Run the application locally
 
-`lein ring server`
-
-### Packaging and running as standalone jar
+Using Docker run the application:
 
 ```
-lein do clean, ring uberjar
-java -jar target/server.jar
+docker run --name kixi.paloma -d -i -t -e bx_database_url="${bx_database_url}" -p 3000:3000/tcp [docker_imageid]
 ```
 
-### Packaging as war
+To test point your browser to `http://localhost:3000/index.html` and you will see the Swagger API home page were you can test the API.
 
-`lein ring uberwar`
 
 ## License
 
