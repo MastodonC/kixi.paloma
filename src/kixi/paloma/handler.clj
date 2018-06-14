@@ -4,6 +4,7 @@
             [kixi.paloma.db :as db]
             [kixi.paloma.schema :as kps]
             [clojure.data.json :as json]
+            [clojure.string :as str]
             [ring.swagger.schema :refer [coerce!]]
             [schema.core :as s]))
 
@@ -44,12 +45,12 @@
             (GET "/business" []
                  :summary "Constructs a business record response."
                  :query-params [uprn :- String]
-                 (ok (generate-response uprn)))
+                 (ok (generate-response (str/trim uprn))))
 
             (GET "/sfl" []
                  :summary "Returns a business name from LLPG or Civica, empty if not found."
                  :query-params [uprn :- String]
-                 (ok (generate-sfl-response uprn)))
+                 (ok (generate-sfl-response (str/trim uprn))))
 
             (GET "/heartbeat" []
                  :return {:result String}
