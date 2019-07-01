@@ -6,7 +6,7 @@ An API Server based on Compojure-API to deliver a REST service for UPRN's.
 
 ### Requirements
 
-The database connection url string is stored an an environment variable.
+The database connection url string is stored as an environment variable.
 
 ```
 $ export BX_DATABASE_URL=jdbc.postgresql://hostname:port/databasename?user=dbusername&password=dbpassword
